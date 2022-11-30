@@ -1,0 +1,244 @@
+/* general rules */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+img {
+    border-radius: 50%;
+    height: 100% ;
+    margin: 0 1rem;
+}
+
+#app {
+    position: relative;
+}
+
+.header_like {
+    height: 9rem;
+    background-color: #009688;
+}
+
+.background {
+    height: calc(100vh - 9rem);
+    background-color: #d8dbd7;
+}
+
+.my_app {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.content {
+    max-width: 1200px;
+    height: 94vh;
+    margin: 3vh auto;
+    display: flex;
+}
+
+/* SECTION CONTACTS */
+.contacts {
+    height: 100%;
+    width: 35%;
+    background-color: white;
+}
+
+/* ALERT */
+.alert {
+    height: 5rem;
+    background-color: #8edafc;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.bell {
+    background-color: white;
+    color: #8edafc;
+    border-radius: 50%;
+    height: 100%;
+    width: 3rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+.alert a {
+    color: #4e4e4e;
+    font-size: 0.8rem;
+}
+
+/* SEARCH BAR */
+.search_bar {
+    height: 3rem;
+    padding: 0.5rem;
+    background-color: #fafafa;
+    display: flex;
+}
+
+.search_bar label {
+    width: 15%;
+    color: #b1b1b1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+#search {
+    width: 85%;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+    border-left: none;
+    padding: 0 1rem;
+}
+
+/* CONTACTS LIST */
+.contacts_list {
+    height: calc(100% - 12.5rem);
+    overflow-y: auto;
+}
+
+.contact {
+    height: 5rem;
+    padding: 0.5rem 0.5rem;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+    display: flex;
+    position: relative;
+}
+
+.hover:hover {
+    background-color: rgba(128, 128, 128, 0.1);;
+}
+
+.contact_name {
+    font-size: 1.1rem;
+}
+
+.last_message {
+    font-size: 0.8rem;
+    color: rgba(128, 128, 128, 0.7);
+    margin: 0.2rem 0;
+}
+
+.last_message_time {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.7rem;
+    color: rgba(128, 128, 128, 0.7);
+}
+
+/* SECTION CHAT */
+.chat {
+    height: 100%;
+    width: 65%;
+}
+
+/* TOPBAR */
+.chat .bar:first-child {
+    border-left: 1px solid grey;
+}
+
+.bar {
+    background-color: #eaeaea;
+    height: 4.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 0;
+}
+
+.bar > * {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.user_last_access {
+    color: #4e4e4e;
+    font-size: 0.8rem;
+    margin-top: 0.1rem;
+}
+
+.btns.top_bar {
+    justify-content: end;
+    margin: 0 1rem;
+    color: #b1b1b1;
+    font-size: 1.3rem;
+}
+
+.btns > * {
+    margin: 0 0.6rem;
+    cursor: pointer;
+}
+
+/* MAINCHAT */
+.main_chat {
+    height: calc(100% - 9rem);
+    background-image: url("imgs/mine.jpg");
+    overflow-y: auto;
+}
+
+.messages_container {
+    height: 100%;
+    padding: 3rem 6rem 1rem;
+}
+
+.row {
+    min-height: 4rem;
+    padding: 0.5rem 0;
+    display: flex;
+}
+
+.message_box {
+    position: relative;
+    height:100%;
+    width: 20rem;
+    max-width: 47%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+}
+
+.time {
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.2rem;
+    font-size: 0.58rem;
+    color: #4e4e4e9a;
+}
+
+.row.sent {
+    justify-content: end;
+}
+
+.sent .message_box {
+    background-color: #d5f9ba;
+}
+
+/* BOTTOM BAR */
+.bar input {
+    width: 75%;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 1rem;
+}
+
+.btns.bottom_bar {
+    color: #6b7376;
+    justify-content: center;
+    font-size: 1.5rem;
+}

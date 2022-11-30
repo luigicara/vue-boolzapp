@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolzapp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id="app">
+        <div class="header_like"></div>
+
+        <div class="background"></div>
+
+        <div class="my_app">
+
+            <div class="content">
+
+                <section class="contacts">
+                    <div class="bar">
+                        <div class="user_info">
+                            <img src="imgs/avatar_io.jpg" alt="avatar">
+                            
+                            <div class="user_name">Sofia</div>
+                        </div>
+
+                        <div class="btns top_bar">
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+
+                    <div class="alert">
+                        <div class="bell">
+                            <i class="fa-solid fa-bell-slash"></i>
+                        </div>
+                            
+                        <div>
+                            <div>Ricevi notifiche di nuovi messaggi</div>
+
+                            <a href="#">Attiva notifiche desktop</a>
+
+                        </div>
+                    </div>
+
+                    <div class="search_bar">
+                        <label for="search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </label>
+
+                        <input type="search" id="search" placeholder="Cerca o inizia una nuova chat">
+                    </div>
+
+                    <div class="contacts_list">
+                        <div v-for="contact in contacts" class="contact hover">
+                            <img :src="`imgs/avatar${contact.avatar}.jpg`" alt="">
+
+                            <div>
+                                <div class="contact_name">
+                                    {{contact.name}}
+                                </div>
+
+                                <div class="last_message">Ultimo messaggio inviato</div>
+                            </div>
+
+                            <div class="last_message_time">12.00</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="chat">
+
+                    <!-- TOP BAR -->
+                    <div class="bar">
+                        <div class="user_info">
+                            <img src="imgs/avatar_1.jpg" alt="avatar">
+                            
+                            <div>
+                                <div class="user_name">Michele</div>
+
+                                <div class="user_last_access">Ultimo Accesso oggi alle 12.00</div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="btns top_bar">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-paperclip"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+
+                    <!-- MAIN CHAT -->
+                    <div class="main_chat">
+                        <div class="messages_container">
+                            <div class="row sent">
+                                <div class="message_box">
+                                    Hai portato a spasso il cane?
+
+                                    <div class="time">15:30</div>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="message_box">
+                                    Tutto fatto!
+                                
+                                    <div class="time">15:30</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- BOTTOM BAR -->
+                    <div class="bar">
+                        <div class="btns bottom_bar">
+                            <i class="fa-regular fa-face-smile"></i>
+                        </div>
+
+                        <input type="text" placeholder="Scrivi un messaggio">
+
+                        <div class="btns bottom_bar">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+    <script src="script.js"></script>
+</body>
+</html>
