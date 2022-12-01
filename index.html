@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
 </head>
 <body>
     <div id="app">
@@ -66,11 +67,11 @@
                                     {{contact.name}}
                                 </div>
 
-                                <div class="last_message">{{contact.messages[contact.messages.length - 1].message}}</div>
+                                <div class="last_message">{{lastMessageText(contact)}}</div>
                             </div>
 
                             <div class="last_message_time">
-                                {{contact.messages[contact.messages.length - 1].date.slice(0,10) === dateFormatted().slice(0,10) ? contact.messages[contact.messages.length - 1].date.slice(11,16) : contact.messages[contact.messages.length - 1].date}}
+                                {{lastMessageTime(contact)}}
                             </div>
                         </div>
                     </div>
@@ -87,7 +88,7 @@
                                 <div class="user_name">{{contacts[activeChat].name}}</div>
 
                                 <div class="user_last_access">
-                                    {{latestMessage("Ultimo Accesso oggi alle ", "Ultimo Accesso il ")}}
+                                    {{latestAccess("Ultimo Accesso oggi alle ", "Ultimo Accesso il ")}}
                                 </div>
 
                             </div>
@@ -104,9 +105,17 @@
                     <!-- MAIN CHAT -->
                     <div class="main_chat">
                         <div class="messages_container">
-                            <div v-for="message in contacts[activeChat].messages" class="row" :class="message.status === 'sent' ? 'sent' : ''">
+                            <div v-for="(message, index) in contacts[activeChat].messages" class="row" :class="message.status === 'sent' ? 'sent' : ''">
                                 <div class="message_box">
                                     {{message.message}}
+
+                                    <div class="dropdown" @mouseover="dropdownHover(message, true)" @mouseout="dropdownHover(message, false)">
+                                        <i class="fa-solid fa-chevron-down" :class="message.visible ? '' : 'd-none'" @click="dropdownContent(message)"></i>
+
+                                        <div class="dropdown_content" :class="message.clicked ? '' : 'd-none'" @mouseout="dropdownContent(message)">
+                                            <a href="#" @click.prevent="cancelMessage(index)">Cancella Messaggio</a>
+                                        </div>
+                                    </div>
 
                                     <div class="time">{{message.date.slice(11,16)}}</div>
                                 </div>
@@ -133,7 +142,6 @@
         </div>
     </div>
     
-    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
     <script src="script.js"></script>
 </body>
 </html>
