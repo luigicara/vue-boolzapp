@@ -3,6 +3,9 @@ const { createApp } = Vue;
     createApp({
         data() {
             return {
+                activeChat: 0,
+                newMessage: "",
+                searchString: "",
                 contacts: [
                     {
                         name: 'Michele',
@@ -168,5 +171,76 @@ const { createApp } = Vue;
                 ]
                 
             }
-        }   
+        },
+        
+        methods: {
+            selectClass(index) {
+                this.activeChat = index;
+            },
+
+            sendMessage() {
+                const dateTime = this.dateFormatted();
+                
+                if (this.newMessage !== "") {
+                    this.contacts[this.activeChat].messages.push({
+                        date: dateTime,
+                        message: this.newMessage,
+                        status: 'sent'
+                    })
+
+                    setTimeout(() => {
+                        this.contacts[this.activeChat].messages.push({
+                            date: dateTime,
+                            message: 'ok',
+                            status: 'received'
+                        })
+                    }, 1000);
+                }
+                
+                this.newMessage = "";
+
+                console.log(this.contacts[this.activeChat].messages)
+            },
+
+            dateFormatted() {
+                const today = new Date();
+
+                const date = `${('0' + today.getDate()).slice(-2)}/${('0' + (today.getMonth()+1)).slice(-2)}/${today.getFullYear()}`;
+
+                const time = `${today.getHours()}:${('0' + today.getMinutes()).slice(-2)}:${today.getSeconds()}`;
+
+                const dateTime = date +' '+ time;
+
+                return dateTime
+            },
+
+            latestMessage(element1, element2) {
+                let message = this.contacts[this.activeChat].messages[this.contacts[this.activeChat].messages.length - 1];
+
+                let string;
+
+                if (message.date.slice(0, 10) === this.dateFormatted().slice(0,10)) {
+                    string = element1 + message.date.slice(11,16)
+                } else {
+                    string = element2 + message.date
+                }
+
+                return string
+            },
+
+            // searchFunction(element) {
+
+            //     for (let i = 0; i < this.contacts.length; i++) {
+                    
+            //     }
+            // }
+        },
+
+        computed: {
+            filteredList() {
+                return this.contacts.filter(contact => {
+                    return contact.name.toLowerCase().includes(this.searchString.toLowerCase())
+                })
+            }
+        }
     }).mount('#app')

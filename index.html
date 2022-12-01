@@ -54,11 +54,11 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </label>
 
-                        <input type="search" id="search" placeholder="Cerca o inizia una nuova chat">
+                        <input type="search" id="search" placeholder="Cerca o inizia una nuova chat" v-model="searchString">
                     </div>
 
                     <div class="contacts_list">
-                        <div v-for="contact in contacts" class="contact hover">
+                        <div v-for="(contact, index) in filteredList" class="contact" :class="activeChat !== index ? 'hover' : 'selected'" @click="selectClass(index)">
                             <img :src="`imgs/avatar${contact.avatar}.jpg`" alt="">
 
                             <div>
@@ -66,10 +66,12 @@
                                     {{contact.name}}
                                 </div>
 
-                                <div class="last_message">Ultimo messaggio inviato</div>
+                                <div class="last_message">{{contact.messages[contact.messages.length - 1].message}}</div>
                             </div>
 
-                            <div class="last_message_time">12.00</div>
+                            <div class="last_message_time">
+                                {{contact.messages[contact.messages.length - 1].date.slice(0,10) === dateFormatted().slice(0,10) ? contact.messages[contact.messages.length - 1].date.slice(11,16) : contact.messages[contact.messages.length - 1].date}}
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -79,12 +81,14 @@
                     <!-- TOP BAR -->
                     <div class="bar">
                         <div class="user_info">
-                            <img src="imgs/avatar_1.jpg" alt="avatar">
+                            <img :src="`imgs/avatar${contacts[activeChat].avatar}.jpg`" alt="avatar">
                             
                             <div>
-                                <div class="user_name">Michele</div>
+                                <div class="user_name">{{contacts[activeChat].name}}</div>
 
-                                <div class="user_last_access">Ultimo Accesso oggi alle 12.00</div>
+                                <div class="user_last_access">
+                                    {{latestMessage("Ultimo Accesso oggi alle ", "Ultimo Accesso il ")}}
+                                </div>
 
                             </div>
 
@@ -100,19 +104,11 @@
                     <!-- MAIN CHAT -->
                     <div class="main_chat">
                         <div class="messages_container">
-                            <div class="row sent">
+                            <div v-for="message in contacts[activeChat].messages" class="row" :class="message.status === 'sent' ? 'sent' : ''">
                                 <div class="message_box">
-                                    Hai portato a spasso il cane?
+                                    {{message.message}}
 
-                                    <div class="time">15:30</div>
-                                </div>
-                            </div>
-    
-                            <div class="row">
-                                <div class="message_box">
-                                    Tutto fatto!
-                                
-                                    <div class="time">15:30</div>
+                                    <div class="time">{{message.date.slice(11,16)}}</div>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +121,7 @@
                             <i class="fa-regular fa-face-smile"></i>
                         </div>
 
-                        <input type="text" placeholder="Scrivi un messaggio">
+                        <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage()">
 
                         <div class="btns bottom_bar">
                             <i class="fa-solid fa-microphone"></i>
