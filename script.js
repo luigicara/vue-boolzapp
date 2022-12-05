@@ -329,7 +329,7 @@ const { createApp } = Vue;
                     return contact.name.toLowerCase().includes(this.searchString.toLowerCase())
                 })
                 
-                console.log(filter);
+                this.activeChat = 0;
                 
                 return filter
             }
