@@ -289,11 +289,11 @@ const { createApp } = Vue;
                 return string
             },
 
-            latestAccess(element1, element2) {
-                let message = this.contacts[this.activeChat].messages[this.contacts[this.activeChat].messages.length - 1];
+            latestAccess(array, element1, element2) {
+                let message = array[this.activeChat].messages[array[this.activeChat].messages.length - 1];
 
                 let string;
-                if (this.contacts[this.activeChat].messages.length > 0) {
+                if (array[this.activeChat].messages.length > 0) {
                     if (message.date.slice(0, 10) === this.dateFormatted().slice(0,10)) {
                         string = element1 + message.date.slice(11,16)
                     } else {
@@ -325,9 +325,13 @@ const { createApp } = Vue;
 
         computed: {
             filteredList() {
-                return this.contacts.filter(contact => {
+                const filter = this.contacts.filter(contact => {
                     return contact.name.toLowerCase().includes(this.searchString.toLowerCase())
                 })
+                
+                console.log(filter);
+                
+                return filter
             }
         },
 

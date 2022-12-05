@@ -82,13 +82,13 @@
                     <!-- TOP BAR -->
                     <div class="bar">
                         <div class="user_info">
-                            <img :src="`imgs/avatar${contacts[activeChat].avatar}.jpg`" alt="avatar">
+                            <img :src="`imgs/avatar${filteredList[activeChat].avatar}.jpg`" alt="avatar">
                             
                             <div>
-                                <div class="user_name">{{contacts[activeChat].name}}</div>
+                                <div class="user_name">{{filteredList[activeChat].name}}</div>
 
                                 <div class="user_last_access">
-                                    {{latestAccess("Ultimo Accesso oggi alle ", "Ultimo Accesso il ")}}
+                                    {{latestAccess(filteredList, "Ultimo Accesso oggi alle ", "Ultimo Accesso il ")}}
                                 </div>
 
                             </div>
