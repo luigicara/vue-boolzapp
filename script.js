@@ -245,7 +245,7 @@ const { createApp } = Vue;
 
                 const date = `${('0' + today.getDate()).slice(-2)}/${('0' + (today.getMonth()+1)).slice(-2)}/${today.getFullYear()}`;
 
-                const time = `${today.getHours()}:${('0' + today.getMinutes()).slice(-2)}:${today.getSeconds()}`;
+                const time = `${('0' + today.getHours()).slice(-2)}:${('0' + today.getMinutes()).slice(-2)}:${today.getSeconds()}`;
 
                 const dateTime = date +' '+ time;
 
